@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <title>Sensor frame - Matrix calibration</title>
+</head>
+<body>
+    <div class="infoBox">
+        <div class="infoBox__text">
+            <b>Calibration of the matrix</b>
+        </div>
+        <div class="infoBox__text">
+            Open the page in full screen [F11] and click on the markers at the corners of the screen.
+        </div>
+        <br>
+        <div class="infoBox__text">
+            <span>Screen Dimensions: </span><span id="screen-dimensions">None</span>
+        </div>
+        <div class="infoBox__text">
+            <span>Last Marker Coord: </span><span id="last-marker">None</span>
+        </div>
+        <div class="infoBox__text">
+            <span>Last Touch Coord: </span><span id="last-touch">None</span>
+        </div>
+        <div class="infoBox__result">
+            <span class="infoBox__result__comment">//Click on this container to save to the clipboard</span>
+            <span id="finish-command"></span>
+        </div>
+        <button class="infoBox__restart" id="restart-calibration" onclick="calibrationRestart()">Restart Calibration</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+    integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
