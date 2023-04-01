@@ -13,7 +13,7 @@ Here are some screenshots of the calibration tool in action:
 
 ## How to use
 
-1. Visit the calibration tool website at https://quzile.github.io/TouchFrame-Calibration/.
+1. Visit the calibration tool website at https://quzile.github.io/IR-TouchFrame-Calibration/.
 2. Press `F11` to open the browser in fullscreen mode.
 3. Touch the markers as they appear in each corner of the screen, one at a time.
 4. After touching all four corners, the script will calculate the calibration matrix and display the `xinput set-prop` command with the calculated values.
