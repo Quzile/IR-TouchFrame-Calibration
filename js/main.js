@@ -25,7 +25,7 @@ function updateMarkerText() {
     const rect = marker[0].getBoundingClientRect();
     const x_marker = rect.left + window.pageXOffset + rect.width / 2;
     const y_marker = rect.top + window.pageYOffset + rect.height / 2;
-    markerText.text(`(${x_marker}, ${y_marker})`);
+    markerText.text(`(${x_marker.toFixed(1)}, ${y_marker.toFixed(1)})`);
 }
 
 // Function to save coordinates
@@ -37,12 +37,12 @@ function saveCoord(e) {
     const x_marker = rect.left + window.pageXOffset + rect.width / 2;
     const y_marker = rect.top + window.pageYOffset + rect.height / 2;
 
-    const message = `TouchIndex [${
-        results.length + 1
-    }] | TouchCoord [x=${x_touch}, y=${y_touch}] | MarkerCoord [x=${x_marker}, y=${y_marker}]`;
+    const message = `TouchIndex [${results.length + 1}] | TouchCoord [x=${x_touch.toFixed(1)}, y=${y_touch.toFixed(
+        1
+    )}] | MarkerCoord [x=${x_marker.toFixed(1)}, y=${y_marker.toFixed(1)}]`;
 
-    $('#last-touch').text(`[x=${x_touch}, y=${y_touch}]`);
-    $('#last-marker').text(`[x=${x_marker}, y=${y_marker}]`);
+    $('#last-touch').text(`[x=${x_touch.toFixed(1)}, y=${y_touch.toFixed(1)}]`);
+    $('#last-marker').text(`[x=${x_marker.toFixed(1)}, y=${y_marker.toFixed(1)}]`);
     console.log(message);
 
     results.push({
