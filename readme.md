@@ -8,8 +8,8 @@ This is a simple touch frame calibration tool, designed to help you calibrate th
 
 Here are some screenshots of the calibration tool in action:
 
-![Screenshot 1](./demo/Screenshot_1.png)
-![Screenshot 2](./demo/Screenshot_2.png)
+![Screenshot 1 - Start Calibration](./demo/Screenshot_1.png)
+![Screenshot 2 - End Calibration](./demo/Screenshot_2.png)
 
 ## How to use
 
