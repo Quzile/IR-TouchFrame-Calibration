@@ -30,14 +30,14 @@ The user can copy the generated command and execute it in the terminal to apply 
 
 ## Notes
 
-Make sure to replace `{YOUR FRAME ID}` in the generated command with the appropriate ID of your touch frame device. You can find the ID using the xinput list command in the terminal.
-This script assumes that the touch frame is already rotated correctly. If you need to rotate the touch frame, use the Coordinate Transformation Matrix property.
+Make sure to replace `{YOUR FRAME ID}` in the generated command with the appropriate ID of your touch frame device. You can find the ID using the `xinput list` command in the terminal.
+This script assumes that the touch frame is already rotated correctly. If you need to rotate the touch frame, use the `Coordinate Transformation Matrix` property.
 
 The calibration calculations in this project are based on the methods described in the [Arch Linux Wiki](https://wiki.archlinux.org/title/Talk:Calibrating_Touchscreen).
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the `MIT License`.
 
 ## Contributing
 
