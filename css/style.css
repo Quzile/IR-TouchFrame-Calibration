@@ -3,7 +3,7 @@
     padding: 0;
     outline: none;
     user-select: none;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-sizing: border-box;
 }
 html {
@@ -17,7 +17,7 @@ html {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    border: 3px solid red;
+    border: 3px solid #ff4d4d;
     background-color: none;
 }
 .marker::after {
@@ -28,7 +28,7 @@ html {
     top: 22px;
     left: 2px;
     border-radius: 10px;
-    background-color: red;
+    background-color: #ff4d4d;
 }
 .marker::before {
     content: '';
@@ -38,7 +38,7 @@ html {
     top: 3px;
     left: 21px;
     border-radius: 10px;
-    background-color: red;
+    background-color: #ff4d4d;
 }
 .marker span {
     position: absolute;
@@ -47,6 +47,8 @@ html {
     align-items: center;
     width: 200px;
     top: 60px;
+    font-size: 14px;
+    color: #333;
 }
 .top-left {
     top: 50px;
@@ -83,12 +85,15 @@ html {
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
-    background-color: #b8eb65;
+    background-color: #4caf50;
     transition: 0.3s;
+    color: #fff;
+    font-size: 14px;
 }
 
 .infoBox__restart:hover {
-    background-color: #a4e241;
+    background-color: #43a047;
+    cursor: pointer;
 }
 
 .infoBox__result {
@@ -108,6 +113,6 @@ html {
 }
 .infoBox__result__comment {
     text-align: left;
-    color: #5a9648;
+    color: #8bc34a;
     margin-bottom: 10px;
 }

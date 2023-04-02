@@ -1,20 +1,26 @@
+// Create and add marker to the screen
 const marker = $('<div>').addClass('marker top-left');
 const markerText = $('<span>');
 marker.append(markerText);
 $('body').append(marker);
 
+// Display screen dimensions
 $('#screen-dimensions').text(`${window.innerWidth}x${window.innerHeight}`);
 
+// Hide restart button and result box initially
 $('#restart-calibration').hide();
 $('.infoBox__result').hide();
 
+// Array to store results
 const results = [];
 
+// Function to update marker position
 function updatePosition(className) {
     marker.removeClass('top-left top-right bottom-left bottom-right');
     marker.addClass(className);
 }
 
+// Function to update marker text
 function updateMarkerText() {
     const rect = marker[0].getBoundingClientRect();
     const x_marker = rect.left + window.pageXOffset + rect.width / 2;
@@ -22,6 +28,7 @@ function updateMarkerText() {
     markerText.text(`(${x_marker}, ${y_marker})`);
 }
 
+// Function to save coordinates
 function saveCoord(e) {
     const x_touch = e.clientX;
     const y_touch = e.clientY;
@@ -44,6 +51,7 @@ function saveCoord(e) {
     });
 }
 
+// Function to calculate deviations
 function calculateDeviations() {
     return results.map(result => {
         return {
@@ -53,6 +61,7 @@ function calculateDeviations() {
     });
 }
 
+// Function to show results
 function showResults() {
     $(document).off('click', handleClick);
     marker.hide();
@@ -72,11 +81,18 @@ function showResults() {
     const correctedClick3X = click_3_X * averageX;
     const correctedClick3Y = click_3_Y * averageY;
 
-    const a = (window.innerWidth * 6) / 8 / (correctedClick3X - correctedClick0X);
-    const c = (window.innerWidth / 8 - a * correctedClick0X) / window.innerWidth;
-    const e = (window.innerHeight * 6) / 8 / (correctedClick3Y - correctedClick0Y);
-    const f = (window.innerHeight / 8 - e * correctedClick0Y) / window.innerHeight;
+    // Calculate coefficients based on the selected percentage and screen dimensions
+    const touchFramePercentage = parseFloat(document.getElementById('touchFramePercentage').value);
+
+    const a = (window.innerWidth * touchFramePercentage) / (correctedClick3X - correctedClick0X);
+    const c = (window.innerWidth * (1 - touchFramePercentage) - a * correctedClick0X) / window.innerWidth;
+    const e = (window.innerHeight * touchFramePercentage) / (correctedClick3Y - correctedClick0Y);
+    const f = (window.innerHeight * (1 - touchFramePercentage) - e * correctedClick0Y) / window.innerHeight;
+
     const command = `xinput set-prop "{YOUR FRAME ID}" "libinput Calibration Matrix" ${a}, 0.0, ${c}, 0.0, ${e}, ${f}, 0.0, 0.0, 1.0`;
+
+    console.log(command);
+
     $('#finish-command').text(`$ ${command}`);
     $('#finish-command').on('click', function clickResult(e) {
         navigator.clipboard
@@ -104,37 +120,33 @@ function showResults() {
     $('.infoBox__result').show();
 }
 
+// Function to restart calibration
 function calibrationRestart() {
     location.reload();
 }
 
+// Function to handle clicks
 function handleClick(e) {
-    const currentClass = marker.hasClass('top-left')
-        ? 'top-left'
-        : marker.hasClass('top-right')
-        ? 'top-right'
-        : marker.hasClass('bottom-left')
-        ? 'bottom-left'
-        : 'bottom-right';
+    // Prevent click event on the touchFramePercentage select element
+    if (e.target.id === 'touchFramePercentage') {
+        e.stopPropagation();
+        return;
+    }
+
+    const positions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+    const currentPositionIndex = positions.findIndex(position => marker.hasClass(position));
     saveCoord(e);
 
-    switch (currentClass) {
-        case 'top-left':
-            updatePosition('top-right');
-            break;
-        case 'top-right':
-            updatePosition('bottom-left');
-            break;
-        case 'bottom-left':
-            updatePosition('bottom-right');
-            break;
-        case 'bottom-right':
-            showResults();
-            break;
+    if (currentPositionIndex < positions.length - 1) {
+        updatePosition(positions[currentPositionIndex + 1]);
+    } else {
+        showResults();
     }
 
     updateMarkerText();
 }
 
+// Attach click event handler
 $(document).on('click', handleClick);
+
 updateMarkerText();
